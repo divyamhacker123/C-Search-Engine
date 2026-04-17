@@ -1,0 +1,67 @@
+classDiagram
+    class SearchEngineFacade {
+        -DocumentProcessor processor
+        -QueryEngine queryEngine
+        -AutocompleteEngine autocomplete
+        +indexDocument(string filepath)
+        +search(string query) vector~Document~
+        +getSuggestions(string prefix) vector~string~
+    }
+
+    class DocumentProcessor {
+        -StringOptimizer stringUtils
+        +process(string rawText) vector~string~
+        -tokenize(string text)
+        -removeStopWords(vector~string~ tokens)
+    }
+
+    class InvertedIndex {
+        -unordered_map~string, vector~Posting~~ index
+        -shared_mutex rw_mutex
+        +addTerm(string term, int docId, int frequency)
+        +getPostings(string term) vector~Posting~
+    }
+
+    class TrieNode {
+        -unordered_map~char, TrieNode*~ children
+        -bool isEndOfWord
+        -int frequency
+    }
+
+    class Trie {
+        -TrieNode* root
+        -shared_mutex rw_mutex
+        +insert(string word)
+        +searchPrefix(string prefix) vector~string~
+    }
+
+    class QueryEngine {
+        -InvertedIndex* index
+        -Ranker* ranker
+        +execute(string query) vector~Document~
+    }
+
+    class Ranker {
+        <<interface>>
+        +score(Posting p, int totalDocs) double
+    }
+
+    class TFIDFRanker {
+        +score(Posting p, int totalDocs) double
+    }
+
+    class ThreadPool {
+        -vector~thread~ workers
+        -queue~Task~ tasks
+        -mutex queue_mutex
+        +enqueue(Task t)
+    }
+
+    SearchEngineFacade --> DocumentProcessor
+    SearchEngineFacade --> QueryEngine
+    SearchEngineFacade --> AutocompleteEngine
+    QueryEngine --> InvertedIndex
+    QueryEngine --> Ranker
+    AutocompleteEngine --> Trie
+    Ranker <|-- TFIDFRanker
+    InvertedIndex ..> ThreadPool : uses for concurrent indexing

@@ -1,0 +1,3 @@
+C:/Users/HP/OneDrive/Desktop/Mini Search Engine/build/CMakeFiles/SearchEngine.dir
+C:/Users/HP/OneDrive/Desktop/Mini Search Engine/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/HP/OneDrive/Desktop/Mini Search Engine/build/CMakeFiles/ZERO_CHECK.dir
