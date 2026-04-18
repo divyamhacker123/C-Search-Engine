@@ -9,6 +9,8 @@
 
 class InvertedIndex {
 private:
+    // particular word freq in every document
+    // index[word] = vector<{documentId, freq}>
     std::unordered_map<std::string, std::vector<Posting>> index;
     mutable std::mutex mtx; // Stable standard mutex
 
