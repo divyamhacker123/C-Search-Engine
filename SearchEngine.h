@@ -21,7 +21,9 @@ private:
     std::vector<std::string> tokenize(const std::string& text) {
         std::vector<std::string> tokens;
         std::string word;
+        // make a stream of word
         std::istringstream stream(text);
+        // take all words in the string text to word
         while (stream >> word) {
             std::string cleanWord = "";
             for (char c : word) {
