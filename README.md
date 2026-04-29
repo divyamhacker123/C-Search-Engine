@@ -28,4 +28,3 @@ File Handling
 🧱 Builds an index (word → document mapping)
 🔍 Accepts user query
 ⚡ Returns relevant documents based on search
-
