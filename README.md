@@ -35,7 +35,7 @@ The system is designed around a producer-consumer pattern. When a batch of docum
 
 Clone the repository and build using CMake:
 ```bash
-git clone [https://github.com/YOUR_USERNAME/mini-search-engine.git](https://github.com/YOUR_USERNAME/mini-search-engine.git)
+git clone [https://github.com/divyamhacker123/mini-search-engine.git](https://github.com/divyamhacker123/mini-search-engine.git)
 cd mini-search-engine
 mkdir build && cd build
 cmake ..
